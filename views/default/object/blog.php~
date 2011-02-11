@@ -91,7 +91,7 @@ $current_count = $vars['entity']->getAnnotations("blogview");
 
 	      $new_val = ($current_count[0]->value +1);
 //	  $firephp->log('current_count = ' . $current_count . '; context = ' . get_context());
- 	   		echo 'current count = ' . $current_count[0]->value . 'new val = ' . $new_val;
+ 	   	//	echo 'current count = ' . $current_count[0]->value . 'new val = ' . $new_val;
 	  //$vars['entity']->blogviews = $current_count + 1;
 	  update_annotation($current_count[0]->id,  "blogview", $new_val, $current_count[0]->value_type,$current_count[0]->owner_guid, $current_count[0]->access_id); 
 	 // echo $vars['entity']->getAnnotations("blogview");

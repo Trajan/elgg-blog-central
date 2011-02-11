@@ -105,7 +105,7 @@
 			break;
 			
 			case "hotposts":
-			$objects = list_entities_from_annotation_count ($entity_type="object", $entity_subtype="blog", $name="blogview", $limit=10, $owner_guid=0, $group_guid=0, $asc=false, $fullview=false, $listtypetoggle=false, $pagination=true, $orderdir= 'desc');
+			$objects = list_entities_from_annotation_count ($entity_type="object", $entity_subtype="blog", $name="blogview", $limit=10, $owner_guid=0, $group_guid=0, $asc=false, $fullview=false, $listtypetoggle=false, $orderdir= 'desc');
 			if (!$objects){
 			echo elgg_echo('blog:none');
 			}else{

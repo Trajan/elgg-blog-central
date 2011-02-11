@@ -23,7 +23,14 @@
 	 $url = $vars['url'] . "mod/blog/everyone.php";
 	 $featured_blogs = get_entities_from_metadata ('featured_blog', $meta_value="yes", $entity_type="object", $entity_subtype="blog", $owner_guid=0, $limit='', $offset=0, $order_by="", $site_guid=0, $count=TRUE, $case_sensitive=FALSE);
 	 $my_following = get_entities_from_relationship('blogwatcher',$_SESSION['user']->guid,$inverse_relationship = false); 
-	 $following = count($my_following);
+	 if (!$my_following)
+	  {
+	   $following = 0;
+	  }
+	  else
+	  {
+	    $following = count($my_following);
+	  }
 ?>
 <br>
 <div id="elgg_horizontal_tabbed_nav">
