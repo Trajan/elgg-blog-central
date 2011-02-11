@@ -4,10 +4,6 @@
 	 * Elgg blog: add post action
 	 *
 	 * @package ElggBlog
-	 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
-	 * @author Curverider Ltd <info@elgg.com>
-	 * @copyright Curverider Ltd 2008-2010
-	 * @link http://elgg.org/
 	 */
 
 	// Make sure we're logged in (send us to the front page if not)
@@ -64,7 +60,7 @@
 
 	// Success message
 		system_message(elgg_echo("blog:posted"));
-		
+
 	// notify watchers
 		$watch = get_plugin_setting('watch','blog');
 		if ($watch != 'no'){
@@ -77,9 +73,8 @@
 			}
 			}
 
-		// add to river	
+	// add to river
 		add_to_river('river/object/blog/create', 'create', get_loggedin_userid(), $blog->guid);
-	
 	// Remove the blog post cache
 		//unset($_SESSION['blogtitle']); unset($_SESSION['blogbody']); unset($_SESSION['blogtags']);
 		remove_metadata($_SESSION['user']->guid,'blogtitle');
@@ -95,6 +90,6 @@
 			$username = "group:" . $page_owner->guid;
 		}
 
-		forward("pg/blog/$username");
+		forward("pg/blog/owner/$username");
 
 ?>

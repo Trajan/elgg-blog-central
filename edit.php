@@ -4,10 +4,6 @@
 	 * Elgg blog edit entry page
 	 *
 	 * @package ElggBlog
-	 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
-	 * @author Curverider Ltd <info@elgg.com>
-	 * @copyright Curverider Ltd 2008-2010
-	 * @link http://elgg.com/
 	 */
 
 	// Load Elgg engine
@@ -28,7 +24,7 @@
 			if ($post->canEdit()) {
 
 				$area1 = elgg_view_title(elgg_echo('blog:editpost'));
-				$area1 .= elgg_view("blog/forms/edit1", array('entity' => $post));
+				$area1 .= elgg_view("blog/forms/edit", array('entity' => $post));
 			// Set the title appropriately
 				$title = sprintf(elgg_echo("blog:posttitle"),$page_owner->name,$blogpost->title);
 		

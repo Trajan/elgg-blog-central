@@ -1,22 +1,19 @@
 <?php
 
-	/**
+/**
 	 * Elgg view all blog posts from all users page
 	 * 
 	 * @package ElggBlog
-	 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
-	 * @author Curverider Ltd <info@elgg.com>
-	 * @copyright Curverider Ltd 2008-2010
-	 * @link http://elgg.com/
 	 */
 
 	// Load Elgg engine
 		define('everyoneblog','true');
 		require_once(dirname(dirname(dirname(__FILE__))) . "/engine/start.php");
-	
+		$callback = get_input('callback');
 		set_page_owner(get_loggedin_userid());
 
 		$offset = (int)get_input('offset', 0);
+		if (empty($callback)) {	
 		
 		$area2 = elgg_view_title(elgg_echo('blog:everyone'));
 
@@ -47,5 +44,18 @@
 		
 	// Display page
 		page_draw(elgg_echo('blog:everyone'),$body);
+}
+else
+{
+
+{
+	//$title = sprintf(elgg_echo("groups:all"),page_owner_entity()->name);
+	//$content = elgg_view_title($title);
+	$content .= elgg_view('blog/everyone');
+	// ajax callback
+	header("Content-type: text/html; charset=UTF-8");
+	echo $content;
+
+}
 		
 ?>

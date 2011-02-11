@@ -1,24 +1,21 @@
 
 
 <?php
-/**
- * Robust Blog add/edit blogpost page
- *
- * Add the support for pre/post description fields
- *
- * @package ElggBlogExtended
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
- * @author Diego Andr¨¦s Ram¨ªrez Arag¨®n <dramirezaragon@gmail.com>
- * @copyright Corporaci¨®n Somos m¨¢s - 2009; Diego Andr¨¦s Ramirez Arag¨®n 2010
- * @link http://github.com/lowfill/blogextended
- *
- * @uses $vars['object'] Optionally, the blog post to edit
- */
+     /**
+ 	 * Robust Blog add/edit blogpost page
+ 	 *
+	 * Elgg blog edit/add page
+	 *
+	 * @package ElggBlog
+	 *
+	 * @uses $vars['object'] Optionally, the blog post to edit
+	 */
 
 $blog_context = get_context();
 
 // Set title, form destination
 if (isset($vars['entity'])) {
+
     $title = sprintf(elgg_echo("blog:editpost"),$object->title);
     $action = "blog/edit";
     $title = $vars['entity']->title;
@@ -35,6 +32,7 @@ if (isset($vars['entity'])) {
     $action = "blog/add";
     $tags = "";
     $title = "";
+	$body = "";
     $comments_on = true;
     $description = "";
     if (defined('ACCESS_DEFAULT'))
@@ -45,20 +43,41 @@ if (isset($vars['entity'])) {
     $container = $vars['container_guid'] ? elgg_view('input/hidden', array('internalname' => 'container_guid', 'value' => $vars['container_guid'])) : "";
 }
 
-// Just in case we have some cached details
-if (empty($body)) {
-    $body = $vars['user']->blogbody;
-    if (!empty($body)) {
-        $title = $vars['user']->blogtitle;
-        $tags = $vars['user']->blogtags;
-    }
-}
+	// Just in case we have some cached details
+		if ((isset($vars['entity']) && $vars['user']->blogguid == $vars['entity']->guid)
+		|| $vars['user']->blogguid == 0 && empty($body)) {
+			$body = $vars['user']->blogbody;
+			$title = $vars['user']->blogtitle;
+			$tags = $vars['user']->blogtags;
+		}
 
-//$comments_select = elgg_view('input/checkboxes', array('internalname' => 'comments_on', 'value' => ''));
-if($comments_on)
-$comments_on_switch = "checked=\"checked\"";
-else
-$comment_on_switch = "";
+	// set the required variables
+
+				$title_label = elgg_echo('title');
+				$title_textbox = elgg_view('input/text', array('internalname' => 'blogtitle', 'value' => $title));
+				$text_label = elgg_echo('blog:text');
+				$text_textarea = elgg_view('input/longtext', array('internalname' => 'blogbody', 'value' => $body));
+				$tag_label = elgg_echo('tags');
+				$tag_input = elgg_view('input/tags', array('internalname' => 'blogtags', 'value' => $tags));
+				$access_label = elgg_echo('access');
+
+		//$comments_select = elgg_view('input/checkboxes', array('internalname' => 'comments_on', 'value' => ''));
+		if($comments_on)
+			$comments_on_switch = "checked=\"checked\"";
+		else
+			$comment_on_switch = "";
+
+		$access_input = elgg_view('input/access', array('internalname' => 'access_id', 'value' => $access_id));
+		$submit_input = elgg_view('input/submit', array('internalname' => 'submit', 'value' => elgg_echo('publish')));
+		$conversation = elgg_echo('blog:conversation');
+		$publish = elgg_echo('publish');
+		$cat = elgg_echo('categories');
+		$preview = elgg_echo('blog:preview');
+		$privacy = elgg_echo('access');
+		$savedraft = elgg_echo('blog:draft:save');
+		$draftsaved = elgg_echo('blog:draft:saved');
+		$never = elgg_echo('blog:never');
+		$allowcomments = elgg_echo('blog:comments:allow');
 // INSERT EXTRAS HERE
 $extras = elgg_view('categories',$vars);
 
@@ -134,7 +153,7 @@ $extras = elgg_view('categories',$vars);
 			<p><label>
     			<?php 
 					echo elgg_echo('tags') . "</br>";
-    				echo elgg_view("input/tags", array("internalname" => "tags","value" => $tags)); 
+    				echo elgg_view("input/tags", array("internalname" => "blogtags","value" => $tags)); 
     				?>
 			</label></p>	
 		</div>
@@ -161,14 +180,16 @@ $extras = elgg_view('categories',$vars);
 			<p><label>
     			<?php 
 					echo elgg_echo('tags') . "</br>";
-    				echo elgg_view("input/tags", array("internalname" => "tags","value" => $tags)); 
+    				echo elgg_view("input/tags", array("internalname" => "blogtags","value" => $tags)); 
     				?>
 			</label></p>	
 		</div>
 		<div id="blog_edit_post_preview">
 		
 		</div>
-		<?php } ?>
+		
+			<!-- $submit_input -->
+		<?php } echo $entity_hidden; ?>
 	</div>
 
 </div>
@@ -185,10 +206,11 @@ $extras = elgg_view('categories',$vars);
 		var temptitle = $("input[name='blogtitle']").val();
 		var tempbody = $("textarea[name='blogbody']").val();
 		var temptags = $("input[name='blogtags']").val();
+		var tempguid = $("input[name='blogpost']").val() || 0;
 
 //FIXME add support to draft extended values
 
-		var postdata = { blogtitle: temptitle, blogbody: tempbody, blogtags: temptags };
+		var postdata = { blogtitle: temptitle, blogbody: tempbody, blogtags: temptags, blogpost: tempguid };
 
 		$.post(drafturl, postdata, function() {
 			var d = new Date();

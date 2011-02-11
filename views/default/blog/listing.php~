@@ -4,10 +4,6 @@
 	 * Elgg blog listing
 	 * 
 	 * @package ElggBlog
-	 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
-	 * @author Curverider Ltd <info@elgg.com>
-	 * @copyright Curverider Ltd 2008-2010
-	 * @link http://elgg.com/
 	 */
 	 $feature = get_plugin_setting('feature','blog');
 	if ($feature != 'no'){
@@ -31,8 +27,7 @@
 		$views = $vars['entity']->getAnnotations("blogview");
 		if ($views != FALSE){
 		$current_count = $views[0]->value;
-		echo 'current_count = ' . $current_count;
-		var_dump ($views);
+		
 		}
 		else
 		{
@@ -66,11 +61,13 @@
 		
 		if ($_SESSION['user']->admin){
 
-		  $info = "<div class='course_index_listing' id='course_listing__".$vars['entity']->guid."'>";
+		  $info = "<div class='blog_index_listing'>";
 		  $info .= "<h3><a href='{$vars['entity']->getURL()}'>{$vars['entity']->title}</a></h3>";
     	  $info .= "<div class='listing_content_left'>";
     	  $info .= "<span style='float:left;margin-right:4px;'>" . $icon . "</span>" . $created_by . $friendlytime . " | " . $comments . " | " . elgg_echo('blog:stats:blogview') . "(" . $current_count . ")";    	      	  
-    	  $info .= '<p class="tags">' . $tags . '</p>';
+    	  if ($tags){
+	  $info .= '<p class="tags">' . $tags . '</p>';
+	  }
     	  if($vars['entity']->featured_blog == "yes"){
 		  $info .= "<div class='featured_blog_spot'>" . $featured . elgg_echo('blog:featured:yes') .  "</div>";
 	  	  }
@@ -88,11 +85,12 @@
 
 	  }else{
 		  
-		  $info = "<div class='course_index_listing' id='course_listing__".$vars['entity']->guid."'>";
+		  $info = "<div class='blog_index_listing'>";
 		  $info .= "<h3><a href='{$vars['entity']->getURL()}'>{$vars['entity']->title}</a></h3>";
     	  $info .= "<div class='listing_content_left'>";
     	  $info .= "<span style='float:left;margin-right:4px;'>" . $icon . "</span>" . $created_by . $friendlytime . " | " . $comments . " | " . elgg_echo('blog:stats:blogview') . "(" . $current_count . ")";    	      	  
-    	  $info .= '<p class="tags">' . $tags . '</p>';
+	  if (isset($tags)){
+	    $info .= '<p class="tags">' . $tags . '</p>';}
     	  if($vars['entity']->featured_blog == "yes"){
 		  $info .= "<div class='featured_blog_spot'>" . $featured . elgg_echo('blog:featured:yes') .  "</div>";
 	  	  }

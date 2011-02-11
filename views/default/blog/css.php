@@ -4,10 +4,6 @@
 	 * Elgg blog CSS extender
 	 * 
 	 * @package ElggBlog
-	 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
-	 * @author Curverider Ltd <info@elgg.com>
-	 * @copyright Curverider Ltd 2008-2010
-	 * @link http://elgg.com/
 	 */
 
 ?>
@@ -38,17 +34,12 @@ width: 100%;
 	font-size: 150%;
 	margin:0 0 10px -3px;
 	padding:3px;
-	background: #E8E8E8;
-	-moz-border-radius-topleft:4px;
-	-webkit-border-top-left-radius:4px;
 }
 
 .blog_post h3 a {
 	text-decoration: none;
-	color: #E7E7E7;
-	text-shadow: 1px 1px 1px #000000;
-	filter: dropshadow(color=#000000,offX=1,offY=1);
 }
+
 .singleview {
 	margin: 0 0 3px 5px;
 	padding: 0 8px 8px 8px;
@@ -69,10 +60,18 @@ width: 100%;
 }
 .blog_post p.tags {
 	background:transparent url(<?php echo $vars['url']; ?>_graphics/icon_tag.gif) no-repeat scroll left 2px;
-	margin:0 0 7px 35px;
+	margin: 0px 0px 0px 35px;
 	padding:0pt 0pt 0pt 16px;
 	min-height:22px;
 }
+
+.blog_index_listing p.tags {
+	background:transparent url(<?php echo $vars['url']; ?>_graphics/icon_tag.gif) no-repeat scroll left 2px;
+	margin: 0px 0px 0px 44px;
+	padding:0pt 0pt 0pt 16px;
+	min-height:22px;
+}
+
 .blog_post .options {
 	margin:0;
 	padding:0;
@@ -226,18 +225,15 @@ width: 100%;
 .featured_blog_spot {
 	float:right;
 	color: #000000;
-	text-shadow: 2px 2px 1px #E7E7E7;
-	filter: dropshadow(color=#E7E7E7,offX=1,offY=1);
 }
 .featured_blog_spot img{
 	margin: 2px 0 0 5px;
+	float: left;
+	padding-right: 3px;
 }
 .blog_top_holder {
 	margin-top: 15px;
 	background: #EBE6E6;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#A6A6A6', endColorstr='#EBE6E6'); /* for IE */
-	background: -webkit-gradient(linear, left top, left bottom, from(#A6A6A6), to(#EBE6E6)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #A6A6A6,  #EBE6E6); /* for firefox 3.6+ */
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 }
@@ -259,21 +255,17 @@ width: 100%;
 	-moz-border-radius: 6px;
 	margin: 0 0 20px 10px;
 	padding: 0 0 0 0;
-	height: 210px;
+	height: auto;
 }
 .dashbox_content {
-	overflow: auto;
+	overflow: hidden;
+	width: 680px;
 	margin: -10px 0 0 0;
 	padding: 8px 0 0 0;
 }
 .dashbox_title_space {
 	margin: 0 0 15px 0;
 	padding: 2px 0 2px 2px;
-	background: #F0F58C;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F0F58C', endColorstr='#F2F5C4'); /* for IE */
-	background: -webkit-gradient(linear, left top, left bottom, from(#F0F58C), to(#F2F5C4)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #F0F58C,  #F2F5C4); /* for firefox 3.6+ */
-	height: 20px;
 	-moz-border-radius-topleft:4px;
 	-moz-border-radius-topright:4px;
 	-webkit-border-top-right-radius:4px;
@@ -468,7 +460,7 @@ width: 100%;
 	-moz-box-shadow: 0px 2px 10px #000000;
 	-webkit-box-shadow: 0px 2px 10px #000000;
 	background: #F6F7C1;
-	margin: 8px 0 0 5px;
+	margin: 17px 0 0 5px;
 }
 .featured_title h3 {
 	color: #698DFA;
@@ -480,10 +472,11 @@ width: 100%;
 	background: #FFFFFF;
 	-moz-box-shadow: 0px 2px 10px #000000;
 	-webkit-box-shadow: 0px 2px 10px #000000;
-	margin:25px 2px 0 30px;
 	padding: 3px;
 	min-width: 630px;
 	min-height: 100px;
+	width: 630px;
+	margin: 46px 2px 0 30px;
 }
 .featured_image {
 	float:left;
@@ -509,8 +502,8 @@ width: 100%;
 }
 .related_blogs {
 	text-align: center;
-	width: 170px;
-	margin: 5px;
+	width: 160px;
+	margin: 0px;
 	padding: 4px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -518,9 +511,20 @@ width: 100%;
 }
 .related_blogs:hover {
 	background: #E8E8E8;
+	cursor: hand;
+	cursor: pointer;
 }
+
+.related_blogs a:hover{
+text-decoration: none;
+}
+
 #blog_related_articles {
-	margin: 20px 0 20px 0;
+	margin: 20px 0 10px 0;
+}
+
+#blog_related_articles h3{
+	background: #E8E8E8;
 }
 
  #blog_edit_top_holder {
@@ -528,6 +532,7 @@ width: 100%;
         margin: 10px 0 0 0;
         padding: 0;
 }
+
 .blog_edit {
 padding: 5px;
 -webkit-border-radius: 8px;
@@ -611,4 +616,34 @@ margin-right: 9px;
         background: #E8E8E8;
         padding: 5px 5px 5px 5px;
         min-height: 420px;
+}
+
+#top_blogger_side_icon {
+padding-right: 5px;
+padding-bottom: 3px;
+}
+
+#top_blogger_sidebar {
+margin-left: 19px;
+}
+
+#top_blogger_sidebar h4{
+margin-bottom: 8px;
+}
+
+.dashbox_title_space img {
+padding-right: 3px;
+}
+
+#blog_menu_list {
+
+}
+
+.blog_index_listing {
+padding: 10px 10px;
+}
+
+.blog_index_listing h3 {
+padding-top: 7px;
+padding-bottom: 7px;
 }

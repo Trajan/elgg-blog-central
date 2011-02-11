@@ -4,10 +4,6 @@
 	 * Elgg blog: edit post action
 	 * 
 	 * @package ElggBlog
-	 * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
-	 * @author Curverider Ltd <info@elgg.com>
-	 * @copyright Curverider Ltd 2008-2010
-	 * @link http://elgg.org/
 	 */
 
 	// Make sure we're logged in (send us to the front page if not)
@@ -15,6 +11,7 @@
 
 	// Get input data
 		$guid = (int) get_input('blogpost');
+		echo $guid;
 		$title = strip_tags(get_input('blogtitle'));
 		$body = get_input('blogbody');
 		$access = get_input('access_id');
@@ -123,7 +120,7 @@
 				$username = $page_owner->username;
 			else if ($page_owner instanceof ElggGroup)
 				$username = "group:" . $page_owner->guid;
-			forward("pg/blog/$username");
+			forward("pg/blog/owner/$username");
 					
 			}
 		

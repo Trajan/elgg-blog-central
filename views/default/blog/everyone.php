@@ -25,41 +25,42 @@
 	 $my_following = get_entities_from_relationship('blogwatcher',$_SESSION['user']->guid,$inverse_relationship = false); 
 	 $following = count($my_following);
 ?>
-<br><br>
+<br>
 <div id="elgg_horizontal_tabbed_nav">
 <ul>
 <?php if (!isloggedin){ ?>
-	<li <?php if($filter == "latestposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=latestposts&amp;callback=true'); return false;" href="?filter=latestposts"><?php echo elgg_echo('blog:latestposts'); ?></a></li>
+	<li <?php if($filter == "latestposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all?filter=latestposts&amp;callback=true'); return false;" href="?filter=latestposts"><?php echo elgg_echo('blog:latestposts'); ?></a></li>
 <?php 
 	$watch = get_plugin_setting('watch','blog');
 	if ($watch != 'no'){ ?>
-	<li <?php if($filter == "hotbloggers") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=hotbloggers&amp;callback=true'); return false;" href="?filter=hotbloggers"><?php echo elgg_echo('blog:hotbloggers'); ?></a></li>
+	<li <?php if($filter == "hotbloggers") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all??filter=hotbloggers&amp;callback=true'); return false;" href="?filter=hotbloggers"><?php echo elgg_echo('blog:hotbloggers'); ?></a></li>
 <?php } ?>
-	<li <?php if($filter == "hotposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=hotposts&amp;callback=true'); return false;" href="?filter=hotposts"><?php echo elgg_echo('blog:hotposts'); ?></a></li>
+	<li <?php if($filter == "hotposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all??filter=hotposts&amp;callback=true'); return false;" href="?filter=hotposts"><?php echo elgg_echo('blog:hotposts'); ?></a></li>
 <?php
 	$featured = get_plugin_setting('featured','blog');
 	if ($featured != 'no'){ ?>
-	<li <?php if($filter == "featured") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=featured&amp;callback=true'); return false;" href="?filter=featured"><?php echo elgg_echo('blog:featured') . " (" . $featured_blogs . ")"; ?></a></li>
+	<li <?php if($filter == "featured") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all??filter=featured&amp;callback=true'); return false;" href="?filter=featured"><?php echo elgg_echo('blog:featured') . " (" . $featured_blogs . ")"; ?></a></li>
 
 <?php }}else{?>
-	<li <?php if($filter == "latestposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=latestposts&amp;callback=true'); return false;" href="?filter=latestposts"><?php echo elgg_echo('blog:latestposts'); ?></a></li>
+	<li <?php if($filter == "latestposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all??filter=latestposts&amp;callback=true'); return false;" href="?filter=latestposts"><?php echo elgg_echo('blog:latestposts'); ?></a></li>
 <?php $watch = get_plugin_setting('watch','blog');
 		if ($watch != 'no'){ ?>
-	<li <?php if($filter == "hotbloggers") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=hotbloggers&amp;callback=true'); return false;" href="?filter=hotbloggers"><?php echo elgg_echo('blog:hotbloggers'); ?></a></li>
+	<li <?php if($filter == "hotbloggers") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all?filter=hotbloggers&amp;callback=true'); return false;" href="?filter=hotbloggers"><?php echo elgg_echo('blog:hotbloggers'); ?></a></li>
 <?php } ?>
-	<li <?php if($filter == "hotposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=hotposts&amp;callback=true'); return false;" href="?filter=hotposts"><?php echo elgg_echo('blog:hotposts'); ?></a></li>
+	<li <?php if($filter == "hotposts") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all?filter=hotposts&amp;callback=true'); return false;" href="?filter=hotposts"><?php echo elgg_echo('blog:hotposts'); ?></a></li>
 <?php
 	$featured = get_plugin_setting('featured','blog');
 	if ($featured != 'no'){ ?>
-	<li <?php if($filter == "featured") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=featured&amp;callback=true'); return false;" href="?filter=featured"><?php echo elgg_echo('blog:featured') . " (" . $featured_blogs . ")"; ?></a></li>
+	<li <?php if($filter == "featured") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all?filter=featured&amp;callback=true'); return false;" href="?filter=featured"><?php echo elgg_echo('blog:featured') . " (" . $featured_blogs . ")"; ?></a></li>
 	<?php
 		}
 		$watch = get_plugin_setting('watch','blog');
 		if ($watch != 'no'){ ?>
-	<li <?php if($filter == "watching") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/everyone.php?filter=watching&amp;callback=true'); return false;" href="?filter=watching"><?php echo elgg_echo('blog:watching') . " (" . $following . ")";  ?></a></li>
+	<li <?php if($filter == "watching") echo "class='selected'"; ?>><a onclick="javascript:$('#blog_menu_box').load('<?php echo $vars['url']; ?>pg/blog/all?filter=watching&amp;callback=true'); return false;" href="?filter=watching"><?php echo elgg_echo('blog:watching') . " (" . $following . ")";  ?></a></li>
 	<?php }} ?>
 </ul>
 </div>
+<div id="blog_menu_list">
 <?php
 
 	
@@ -83,9 +84,10 @@
 			case "hotbloggers":
 			$objects = get_entities_by_relationship_count('blogwatcher',$inverse_relationship = true,$type = "user",$subtype = "",$owner_guid = 0,$limit = 10,$offset = 0);
 			if (!$objects){
-			echo elgg_echo('blog:bloggers:none');
+			echo '<div class="blog_index_listing">' . elgg_echo('blog:bloggers:none') . '</div>';
 			}else{
 			foreach($objects as $object){
+			echo '<div class="blog_index_listing">';
 			echo elgg_view('profile/icon',array('entity' => $object, 'size' => 'small', 'override' => 'false'));
 			echo "<h3>" . $object->name . "</h3>";
 			$blogs = elgg_get_entities(array('type' => 'object', 'subtype' => 'blog', 'owner_guid' => $object->guid,'limit' => '1'));
@@ -97,12 +99,13 @@
 						}	
 			echo elgg_echo('blog:watcher:latest:title') . "<a href='{$blog->getURL()}'>" . $blog->title . "</a><br>";
 			echo '<p>' . $description . '</p>';
-			echo "<br>";
-			}}}
+			}
+			echo '</div>';
+			}}
 			break;
 			
 			case "hotposts":
-			$objects = list_entities_from_annotation_count ($entity_type="object", $entity_subtype="blog", $name="blogview", $limit=10, $owner_guid=0, $group_guid=0, $asc=false, $fullview=false, $listtypetoggle=false, $pagination=true, $orderdir= 'desc');
+			$objects = list_entities_from_annotation_count ($entity_type="object", $entity_subtype="blog", $name="blogview", $limit=10, $owner_guid=0, $group_guid=0, $asc=false, $fullview=false, $listtypetoggle=false, $orderdir= 'desc');
 			if (!$objects){
 			echo elgg_echo('blog:none');
 			}else{
@@ -122,9 +125,10 @@
 			case "watching":
 			$watchers = get_entities_from_relationship('blogwatcher',$_SESSION['user']->guid,$inverse_relationship = false);
 			if (!$watchers){
-			echo elgg_echo('blog:watching:none');
+			echo '<div class="blog_index_listing">' . elgg_echo('blog:watching:none') . '</div>';
 			}else{
 			foreach($watchers as $watcher){
+			echo '<div class="blog_index_listing">';
 			echo elgg_view('profile/icon',array('entity' => $watcher, 'size' => 'small', 'override' => 'false'));
 			echo "<h3>" . $watcher->name . "</h3>";
 			$blogs = elgg_get_entities(array('type' => 'object', 'subtype' => 'blog', 'owner_guid' => $watcher->guid,'limit' => '1'));
@@ -136,7 +140,10 @@
 						}	
 			echo elgg_echo('blog:watcher:latest:title') . "<a href='{$blog->getURL()}'>" . $blog->title . "</a><br>";
 			echo $description;
-			}}}
+			}
+			echo '</div>';
+			}}
 			break;	
 		}
 ?>
+</div>
